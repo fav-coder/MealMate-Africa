@@ -1,0 +1,60 @@
+{% extends 'main.html' %}
+{% block content %}
+
+  <div class="container-xxl py-5 bg-dark hero-header mb-5">
+                <div class="container my-5 py-5">
+                    <div class="row align-items-center g-5">
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <h1 class="display-3 text-white animated slideInLeft">Enjoy Using<br>my MealMate Website</h1>
+                            <p class="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                            <a href="{% url 'recipe' %}" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Recipes</a>
+                        </div>
+                        <div class="col-lg-6 text-center text-lg-end overflow-hidden">
+                            <img class="img-fluid" src="img/hero.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<br><br>
+        <!-- Facts Start -->
+  <div class="container-xxl py-6">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="fact-item bg-light rounded text-center h-100 p-5">
+                    <i class="fa fa-certificate fa-4x text-primary mb-4"></i>
+                    <p class="mb-2 text-primary">Years Experience</p>
+                    <h1 class="display-5 mb-0" data-toggle="counter-up">50</h1>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.3s">
+                <div class="fact-item bg-light rounded text-center h-100 p-5">
+                    <i class="fa fa-users fa-4x text-primary mb-4"></i>
+                    <p class="mb-2 text-primary ">Recipes Published</p>
+                    <h1 class="display-5 mb-0" data-toggle="counter-up">{{recipes}}</h1>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.5s">
+                <div class="fact-item bg-light rounded text-center h-100 p-5">
+                    <i class="fa fa-bread-slice fa-4x text-primary mb-4"></i>
+                    <p class="mb-2 text-primary ">Total Products</p>
+                    <h1 class="display-5 mb-0" data-toggle="counter-up">135</h1>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.7s">
+                <div class="fact-item bg-light rounded text-center h-100 p-5">
+                    <i class="fa fa-cart-plus fa-4x text-primary mb-4"></i>
+                    <p class="mb-2 text-primary ">Users Everyday</p>
+                    <h1 class="display-5 mb-0" data-toggle="counter-up">100</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Facts End -->
+
+<br><br>
+
+{% endblock %}

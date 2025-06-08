@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+{% block content %}
+
+
+
+<div class="container-xxl py-5 bg-dark hero-header mb-5">
+                <div class="container text-center my-5 pt-5 pb-4">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Utensil-Hub</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center text-uppercase">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Utensil-Hub</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+
+
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Utensil Hub – Best Places to Buy Utensils</h2>
+
+  <div class="row">
+    {% for shop in shops %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ shop.name }}</h5>
+          <p class="card-text">{{ shop.description }}</p>
+          {% if shop.delivery %}
+          <span class="badge badge-success px-2 py-2">Delivery Available</span>
+          {% else %}
+          <span class="badge badge-secondary px-2 py-2">No Delivery</span>
+          {% endif %}
+        </div>
+        <div class="card-footer bg-white border-top-0">
+          <a href="{{ shop.link }}" class="btn btn-outline-primary btn-sm w-100" target="_blank">
+            Visit Store
+          </a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+      <p class="text-center">No utensil stores found.</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+
+</div>
+
+
+
+{% endblock %}
