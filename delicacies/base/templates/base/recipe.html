@@ -2,32 +2,48 @@
 {% block content %}
 
 <div class="container-xxl py-5 bg-dark hero-header mb-5">
-                <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">Recipes</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Recipes</li>
-                        </ol>
-                    </nav>
+    <div class="container text-center my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Recipes</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center text-uppercase">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Recipes</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="container my-5">
+    <h2 class="mb-4">All Recipes</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for recipe in recipes %}
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ recipe.name }}</h5>
+                        <p class="card-text"><strong>Meal Type:</strong> {{ recipe.meal_type|title }}</p>
+                        <p class="card-text"><strong>Description:</strong> {{ recipe.description }}</p>
+                        <p class="card-text"><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+                        <p class="card-text"><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+                        <p class="card-text"><strong>Allergies:</strong>
+                            <ul class="mb-0">
+                                {% for allergy in recipe.allergies.all %}
+                                    <li>{{ allergy.name }}</li>
+                                {% empty %}
+                                    <li>None</li>
+                                {% endfor %}
+                            </ul>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-
-<div class="container my-3">
-  <h2>Recipes</h2>
-  {% for recipe in recipes %}
-    <div style="margin-bottom: 30px; padding: 10px; border-bottom: 1px solid #ccc;">
-      <h3>{{ recipe.name }}</h3>
-      <strong>Meal Type:</strong> {{ recipe.meal_type }} <br>
-      <strong>Description:</strong> {{ recipe.description }} <br>
-      <strong>Ingredients:</strong> {{ recipe.ingredient }} <br>
-      <strong>Instructions:</strong> {{ recipe.instructions }} <br>
-      <strong>Allergies:</strong> {{ recipe.allergies }} <br>
+        {% empty %}
+            <div class="col-12">
+                <p class="text-center">No recipes found.</p>
+            </div>
+        {% endfor %}
     </div>
-  {% empty %}
-    <p>No recipes found.</p>
-  {% endfor %}
 </div>
+
 {% endblock %}
