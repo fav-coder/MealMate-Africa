@@ -15,6 +15,15 @@ def recipe(request):  # Renamed for clarity
     context = {'recipes': recipes}
     return render(request, 'base/recipe.html', context)
 
+
+
+#from django.shortcuts import get_object_or_404
+
+#def recipe(request, pk):
+    #recipe = get_object_or_404(Recipe, pk=pk)
+    #return render(request, 'base/recipe_detail.html', {'recipe': recipe})
+
+
 def nutrientcorner(request):  # Renamed for PEP8 consistency
     nutrientscorner = NutrientCorner.objects.all()
     context = {'nutrientscorner': nutrientscorner}
