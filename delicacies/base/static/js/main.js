@@ -24,6 +24,9 @@
         $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
         return false;
     });    
-   
+
+    window.addEventListener('DOMContentLoaded', () => {
+        lucide.createIcons();   
+    });
 
 })(jQuery);

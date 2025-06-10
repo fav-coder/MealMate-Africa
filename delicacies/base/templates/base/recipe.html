@@ -19,32 +19,26 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {% for recipe in recipes %}
             <div class="col">
-                <div class="card h-100 shadow-sm ">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ recipe.name }}</h5>
-                        <p class="card-text"><strong>Meal Type:</strong> {{ recipe.meal_type|title }}</p>
-                        <p class=" card-text"><strong>Description:</strong> {{ recipe.description }}</p>
-                        <p class="card-text"><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
-                        <p class="card-text"><strong>Instructions:</strong> {{ recipe.instructions }}</p>
-                        <p class="card-text"><strong>Allergies:</strong>
-                            <ul class="mb-0">
-                                {% for allergy in recipe.allergies.all %}
-                                    <li>{{ allergy.name }}</li>
-                                {% empty %}
-                                    <li>None</li>
-                                {% endfor %}
-                            </ul>
-                        </p>
-                        <p class="card-text"><strong>Management of Allergies:</strong> {{ recipe.management_of_allergies|default:"None" }}</p>
-                    </div>
-                </div>
-            </div>
+                <div class="card h-50 shadow-sm nutrient-card-hover btn-light rounded-3 p-3 border-0">
+  <div class="card-body">
+    <h5 class="card-title text-primary mb-2">{{ recipe.name }}</h5>
+    <p class="card-text"><strong>Meal Type:</strong> {{ recipe.meal_type|title }}</p>
+    <p class="card-text"><strong>Description:</strong> {{ recipe.description|truncatewords:25 }}</p>
+    <p class="card-text"><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+    <p class="card-text"><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+    <p class="card-text"><strong>Allergies:</strong>
+      <ul class="mb-0 ps-3">
+        {% for allergy in recipe.allergies.all %}
+          <li>{{ allergy.name }}</li>
         {% empty %}
-            <div class="col-12">
-                <p class="text-center">No recipes found.</p>
-            </div>
+          <li>None</li>
+        {% endfor %}
+      </ul>
+    </p>
+    <p class="card-text"><strong>Management of Allergies:</strong> {{ recipe.management_of_allergies|default:"None" }}</p>
+  </div>
+</div>
         {% endfor %}
     </div>
-</div>
 
 {% endblock %}

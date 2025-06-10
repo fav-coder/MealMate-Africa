@@ -1,0 +1,68 @@
+.hero-header {
+    background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9)), url(delicacies\base\static\images\bg-hero.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero-header img {
+    animation: imgRotate 50s linear infinite;
+}
+
+@keyframes imgRotate { 
+    100% { 
+        transform: rotate(360deg); 
+    } 
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: rgba(255, 255, 255, .5);
+}
+
+.nav-pills .nav-item .active {
+    border-bottom: 2px solid var(--primary);
+h1{
+    font-size: 2.5rem;
+    font-weight: 700;
+}    
+}
+
+.nutrient-card-hover {
+  transition: transform 0.3s ease;
+}
+
+.nutrient-card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card {
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.hero-header {
+  background: url('../images/hero.jpg') center center / cover no-repeat;
+}
+.nutrient-card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.nutrient-card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.hero-header {
+    background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9)), url(delicacies\base\static\images\bg-hero.jpg);
+    
+}
+
+
+
+
