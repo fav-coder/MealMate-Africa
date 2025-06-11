@@ -10,10 +10,15 @@ def about(request):
 def contact(request):
     return render(request, 'base/contact.html')
 
-def recipe(request):  # Renamed for clarity
+def recipes(request):  # Renamed for clarity
     recipes = Recipe.objects.all()
     context = {'recipes': recipes}
-    return render(request, 'base/recipe.html', context)
+    return render(request, 'base/recipes.html', context)
+
+def recipe(request, pk):
+    recipe = Recipe.objects.get(id=pk)
+    context = {'recipe': recipe}
+    return render(request, 'base/recipe.html',context)    
 
 
 def nutrientcorner(request):  # Renamed for PEP8 consistency
