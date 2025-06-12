@@ -18,7 +18,7 @@ class Recipe(models.Model):
         ('beverage', 'Beverage'),
         ('appetizer', 'Appetizer'),
         ('salad', 'Salad'),
-        ('other', 'Other'),
+        ('drink', 'drink'),
     ]
     name = models.CharField(max_length=100)
     meal_type = models.CharField(max_length=20, choices=MEAL_TYPES)

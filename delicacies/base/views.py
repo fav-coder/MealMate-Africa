@@ -10,10 +10,15 @@ def about(request):
 def contact(request):
     return render(request, 'base/contact.html')
 
-def recipes(request):  # Renamed for clarity
-    recipes = Recipe.objects.all()
+def recipes(request):
+    meal_filter = request.GET.get('meal')
+    if meal_filter:
+        recipes = Recipe.objects.filter(meal_type__iexact=meal_filter)
+    else:
+        recipes = Recipe.objects.all()
     context = {'recipes': recipes}
     return render(request, 'base/recipes.html', context)
+
 
 def recipe(request, pk):
     recipe = Recipe.objects.get(id=pk)
@@ -30,3 +35,6 @@ def shop(request):  # Renamed to avoid conflict with model
     shops = Shop.objects.all()  # Ensure you have imported Shop correctly
     context = {'shops': shops}
     return render(request, 'base/shop.html',context)
+
+
+

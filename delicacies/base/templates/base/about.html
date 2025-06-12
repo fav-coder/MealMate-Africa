@@ -2,89 +2,88 @@
 {% load static %}
 {% block content %}
 
-
+<!-- Hero Section -->
 <div class="container-xxl py-5 bg-dark hero-header mb-5">
-                <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">About Us</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">About</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
+  <div class="container text-center my-5 pt-5 pb-4">
+    <h1 class="display-3 text-white mb-3 animated slideInDown">About Us</h1>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb justify-content-center text-uppercase">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+        <li class="breadcrumb-item text-white active" aria-current="page">About</li>
+      </ol>
+    </nav>
+  </div>
+</div>
 
-<div class="card" data-aos="fade-up">
-
-        <div class="container my-5">
-  <h2>Our Mission</h2>
-  <p>
-    At MealMate, we believe that everyone deserves access to personalized, nutritious meals.
-    Whether you're managing allergies, planning meals, or learning about nutrition, our app supports your health journey.
+<!-- Mission Section -->
+<div class="container my-5">
+  <h2 class="text-center mb-4">Our Mission</h2>
+  <p class="lead text-center">
+    At <strong>MealMate</strong>, we believe that everyone deserves access to personalized, nutritious meals.
+    Whether you're managing allergies, planning meals, or learning about nutrition,
+    our app supports your health journey.
   </p>
 </div>
 
-
+<!-- What We Offer -->
 <div class="container my-5">
-  <h2 class="mb-4">What We Offer</h2>
+  <h2 class="text-center mb-4">What We Offer</h2>
   <div class="row text-center">
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm p-3">
-        <h4>Smart Recipes</h4>
+    <div class="col-md-4 mb-4" data-aos="fade-up">
+      <div class="card h-100 shadow-sm p-4">
+        <h4>🍲 Smart Recipes</h4>
         <p>Find delicious meals that match your dietary needs and preferences.</p>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm p-3">
-        <h4>Allergy Awareness</h4>
+    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="card h-100 shadow-sm p-4">
+        <h4>⚠️ Allergy Awareness</h4>
         <p>See what allergens are in a meal and how to manage them safely.</p>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm p-3">
-        <h4>Nutrient Corner</h4>
+    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="card h-100 shadow-sm p-4">
+        <h4>🥦 Nutrient Corner</h4>
         <p>Explore vitamins, minerals, and what your body needs daily.</p>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Why Choose Us -->
 <div class="container my-5">
-  <div class="row align-items-center">
-    <div class="col-md-6">
-<img src="{% static 'images/pexels-mikegz-400576129-14941252.jpg' %}" alt="Hero Image" class="img-fluid" />
+  <div class="row align-items-center g-4">
+    <div class="col-lg-6" data-aos="fade-right">
+      <img src="{% static 'images/Cheesy Crunch Chicken Burger.jpg' %}" alt="Healthy Meal" class="img-fluid rounded shadow-sm">
     </div>
-    <div class="col-md-6">
-      <h3>Why Choose Us?</h3>
-      <ul>
-        <li>Customized meal ideas</li>
-        <li>Allergy-safe recipe recommendations</li>
-        <li>Integrated shop links for ingredients</li>
-        <li>Backed by nutritional science</li>
+    <div class="col-lg-6" data-aos="fade-left">
+      <h3 class="mb-3">Why Choose Us?</h3>
+      <ul class="list-unstyled fs-5">
+        <li>✅ Customized meal ideas</li>
+        <li>✅ Allergy-safe recipe recommendations</li>
+        <li>✅ Integrated shop links for ingredients</li>
+        <li>✅ Backed by nutritional science</li>
       </ul>
     </div>
   </div>
 </div>
 
-
-<div class="container my-5">
-  <h2>Meet the Creator</h2>
-  <p>
-    Hi! I'm Sangala, a passionate developer and health enthusiast from Jacaranda Gardens.
-    I built MealMate to help families, students, and health-conscious individuals make smarter food choices.
+<!-- Meet the Creator -->
+<div class="container my-5 text-center" data-aos="fade-up">
+  <h2 class="mb-3">Meet the Creator</h2>
+  <p class="lead">
+    Hi! I'm <strong>Sangala</strong>, a passionate developer and health enthusiast from Jacaranda Gardens.<br>
+    I built <strong>MealMate</strong> to help families, students, and health-conscious individuals make smarter food choices.
   </p>
 </div>
 
-
-<div class="container text-center my-5">
+<!-- Call to Action -->
+<div class="container text-center my-5" data-aos="fade-up">
   <h4>Ready to start your journey?</h4>
-  <a href="{% url 'recipes' %}" class="btn btn-primary btn-lg mt-3">Explore Recipes</a>
+  <a href="{% url 'recipes' %}" class="btn btn-primary btn-lg mt-3 px-4 shadow">
+    🍽️ Explore Recipes Now
+  </a>
 </div>
-</div>
-      
-
 
 {% endblock %}

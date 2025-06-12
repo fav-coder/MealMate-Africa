@@ -44,6 +44,10 @@
         <option value="snack">🧁 Snack</option>
         <option value="dessert">🍰 Dessert</option>
         <option value="appetizer">🍢 Appetizer</option>
+        <option value="salad">🥗️ Salad</option> 
+        <option value="drink">🍹 Drink</option>
+
+      
       </select>
     </form>
   </div>
@@ -61,6 +65,9 @@
                 {% elif recipe.meal_type == 'snack' %} 🧁
                 {% elif recipe.meal_type == 'dessert' %} 🍰
                 {% elif recipe.meal_type == 'appetizer' %} 🍢
+                {% elif recipe.meal_type == 'salad' %} 🥗️
+                {% elif recipe.meal_type == 'drink' %} 🍹
+
                 {% else %} 🍴
                 {% endif %}
                 {{ recipe.name }}
@@ -78,3 +85,5 @@
 </div>
 
 {% endblock %}
+
+
