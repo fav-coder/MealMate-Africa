@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<!-- Hero Section -->
+<div class="container-xxl py-5 bg-dark hero-header mb-5">
+    <div class="container text-center my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ recipe.name }}</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center text-uppercase">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'recipes' %}">Recipes</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">{{ recipe.name }}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<!-- Recipe Detail Content -->
+<div class="container my-5">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h2 class="card-title">{{ recipe.name }}</h2>
+            <p><strong>Meal Type:</strong> {{ recipe.meal_type|title }}</p>
+            <p><strong>Description:</strong> {{ recipe.description }}</p>
+            <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+            <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+            <p><strong>Allergies:</strong>
+                <ul>
+                    {% for allergy in recipe.allergies.all %}
+                        <li>{{ allergy.name }}</li>
+                    {% empty %}
+                        <li>None</li>
+                    {% endfor %}
+                </ul>
+            </p>
+            <p><strong>Management of Allergies:</strong> {{ recipe.management_of_allergies|default:"None" }}</p>
+        </div>
+    </div>
+</div>
+
+
+<a href="{% url 'recipes' %}" class="btn btn-secondary mb-4">
+  ← Back to Recipes
+</a>
+
+{% endblock %}

@@ -1,31 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm px-4 px-lg-5 py-3">
+  <div class="container-fluid">
+    <a class="navbar-brand text-primary fw-bold fs-3" href="{% url 'home' %}">
+      <i class="fas fa-utensils me-2"></i>MealMate
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand text-primary" href="{% url 'home' %}">MealMate</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'home' %}">Home</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'about' %}">About</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'recipes' %}">Recipes</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'nutrientcorner' %}">Nutrients-Corner</a>
-      </li>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active text-primary{% endif %}" href="{% url 'home' %}">Home</a>
+        </li>
 
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'shop' %}">Utensil-Hub</a>
-      </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active text-primary{% endif %}" href="{% url 'about' %}">About</a>
+        </li>
 
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'contact' %}">Contact-Us</a>
-      </li>
-    </ul>
+        <!-- ✅ Recipes Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name == 'recipes' %}text-primary{% endif %}" href="#" id="recipesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Recipes
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="recipesDropdown">
+            <li><a class="dropdown-item" href="{% url 'recipes' %}?meal=breakfast">Breakfast</a></li>
+            <li><a class="dropdown-item" href="{% url 'recipes' %}?meal=lunch">Lunch</a></li>
+            <li><a class="dropdown-item" href="{% url 'recipes' %}?meal=dinner">Dinner</a></li>
+            <li><a class="dropdown-item" href="{% url 'recipes' %}?meal=snacks">Snacks</a></li>
+            <li><a class="dropdown-item" href="{% url 'recipes' %}?meal=drinks">Drinks</a></li>
+            <li><a class="dropdown-item" href="{% url 'recipes' %}?meal=appetizer">Appetizer</a></li>
+            <li><a class="dropdown-item" href="{% url 'recipes' %}?meal=dessert">Dessert</a></li>
+
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'nutrientcorner' %}active text-primary{% endif %}" href="{% url 'nutrientcorner' %}">Nutrients-Corner</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'shop' %}active text-primary{% endif %}" href="{% url 'shop' %}">Utensil-Hub</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active text-primary{% endif %}" href="{% url 'contact' %}">Contact</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

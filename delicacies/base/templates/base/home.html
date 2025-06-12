@@ -4,21 +4,116 @@
 
 <div class="container-xxl py-5 bg-dark hero-header mb-5">
     <div class="container my-5 py-5">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6 text-center text-lg-start">
-                <h1 class="display-3 text-white animated slideInLeft">Enjoy Using<br>my MealMate Website</h1>
-                <p class="text-white animated slideInLeft mb-4 pb-2">
-                    Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
-                </p>
-                <a href="{% url 'recipes' %}" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Recipes</a>
+    <div class="row align-items-center gx-xxl-8 gy-5 flex-column-reverse flex-lg-row">
+    <!-- Text -->
+    <div class="col-lg-6 text-center text-lg-start px-4 px-lg-5 me-lg-4">
+        <h1 class="display-4 display-lg-3 text-white animated slideInLeft">
+                    Enjoy Using<br>my MealMate Website
+        </h1>
+        <p class="text-white animated slideInLeft mb-4 pb-2">
+                    Discover tasty, balanced meals tailored to your needs. With MealMate, planning and preparing your favorite dishes has never been easier.
+        </p>
+        <a href="{% url 'recipes' %}" class="btn btn-primary py-sm-3 px-sm-5 me-0 me-lg-3 animated slideInLeft">Recipes</a>
+    </div>
+
+    <!-- Image -->
+    <div class="col-lg-6 text-center px-4 px-lg-5 ms-lg-4">
+        <img class="img-fluid w-75 w-md-100 mt-3 mt-lg-0 animate__animated animate__bounceIn delay-1s"
+             src="{% static 'images/main.hero.png' %}"
+             alt="MealMate homepage hero banner">
+    </div>
+    </div>
+
+    </div>
+</div>
+
+<div class="card" data-aos="fade-up">
+
+<!-- Facts Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Fact 1 -->
+            <div class="col-lg-3 col-sm-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="bg-light rounded text-center p-4 h-100">
+                    <i class="fas fa-utensils fa-3x text-primary mb-3"></i>
+                    <h5 class="mb-2">1000+ Recipes</h5>
+                    <p class="mb-0">Carefully curated for taste and nutrition</p>
+                </div>
             </div>
-            <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-<img class="img-fluid" src="{% static 'images/main.hero.png' %}" alt="Hero Image">
+            <!-- Fact 2 -->
+            <div class="col-lg-3 col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+                <div class="bg-light rounded text-center p-4 h-100">
+                    <i class="fas fa-heartbeat fa-3x text-primary mb-3"></i>
+                    <h5 class="mb-2">Health-Focused</h5>
+                    <p class="mb-0">Plans that support your lifestyle goals</p>
+                </div>
+            </div>
+            <!-- Fact 3 -->
+            <div class="col-lg-3 col-sm-6 wow fadeIn" data-wow-delay="0.5s">
+                <div class="bg-light rounded text-center p-4 h-100">
+                    <i class="fas fa-clock fa-3x text-primary mb-3"></i>
+                    <h5 class="mb-2">Save Time</h5>
+                    <p class="mb-0">Smart planning & auto-generated shopping lists</p>
+                </div>
+            </div>
+            <!-- Fact 4 -->
+            <div class="col-lg-3 col-sm-6 wow fadeIn" data-wow-delay="0.7s">
+                <div class="bg-light rounded text-center p-4 h-100">
+                    <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                    <h5 class="mb-2">Community Driven</h5>
+                    <p class="mb-0">Get inspired by others & share your own meals</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Facts End -->
 
-<!-- ... rest of your page ... -->
+
+
+<!-- Facts Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Fact 1 -->
+            <div class="col-lg-3 col-sm-6 text-center">
+                <div class="bg-light rounded p-4">
+                    <i class="fas fa-utensils fa-3x text-primary mb-3"></i>
+                    <h2 class="counter text-primary" data-target="1000">0</h2>
+                    <p class="mb-0">Curated Recipes</p>
+                </div>
+            </div>
+            <!-- Fact 2 -->
+            <div class="col-lg-3 col-sm-6 text-center">
+                <div class="bg-light rounded p-4">
+                    <i class="fas fa-heartbeat fa-3x text-primary mb-3"></i>
+                    <h2 class="counter text-primary" data-target="500">0</h2>
+                    <p class="mb-0">Healthy Plans</p>
+                </div>
+            </div>
+            <!-- Fact 3 -->
+            <div class="col-lg-3 col-sm-6 text-center">
+                <div class="bg-light rounded p-4">
+                    <i class="fas fa-clock fa-3x text-primary mb-3"></i>
+                    <h2 class="counter text-primary" data-target="300">0</h2>
+                    <p class="mb-0">Hours Saved</p>
+                </div>
+            </div>
+            <!-- Fact 4 -->
+            <div class="col-lg-3 col-sm-6 text-center">
+                <div class="bg-light rounded p-4">
+                    <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                    <h2 class="counter text-primary" data-target="800">0</h2>
+                    <p class="mb-0">Happy Users</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Facts End -->
+</div>
 
 {% endblock %}
+
+
