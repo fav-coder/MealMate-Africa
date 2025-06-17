@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import NutrientCorner, Recipe, Allergy, Shop  # Note: Shop is capitalized now
+# Ensure you have the correct import for RecipeForm  
+
 
 def home(request):
     return render(request, 'base/home.html')
@@ -23,7 +25,8 @@ def recipes(request):
 def recipe(request, pk):
     recipe = Recipe.objects.get(id=pk)
     context = {'recipe': recipe}
-    return render(request, 'base/recipe.html',context)    
+    return render(request, 'base/recipe.html',context)  
+
 
 
 def nutrientcorner(request):  # Renamed for PEP8 consistency

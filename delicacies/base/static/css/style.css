@@ -116,7 +116,30 @@ h1{
   color: #ffc107 !important; /* Bootstrap warning color or your brand color */
 }
 
+.glass-navbar {
+  background: rgba(15, 23, 43, .9); /* medium dark tint */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  z-index: 1030;
+}
 
+.navbar-nav .nav-link {
+  margin: 0 1rem;
+  font-size: 1.1rem;
+  color: #f5f5f5 !important;
+}
+.navbar-nav .nav-link:hover {
+  color: #ffc107 !important; /* Highlight on hover */
+}
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-
-
+.meal-logo-text {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.8rem;
+  color: #ffc107;
+  letter-spacing: 1px;
+}
