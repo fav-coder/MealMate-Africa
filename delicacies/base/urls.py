@@ -2,6 +2,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from .views import submit_testimonial
 
 urlpatterns = [
     # Static Pages
@@ -19,6 +20,10 @@ urlpatterns = [
     # Other Sections
     path('nutrientcorner/', views.nutrientcorner, name='nutrientcorner'),
     path('shop/', views.shop, name='shop'),
+    # base/urls.py
+    path('testimonial/', submit_testimonial, name='submit_testimonial'),
+
+
 ]
 
 # Serve media files in development (e.g., images for recipes)

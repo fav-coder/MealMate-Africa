@@ -1,66 +1,50 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<!-- Hero Section -->
+<!-- Hero -->
 <div class="container-xxl py-5 bg-dark hero-header mb-5">
-    <div class="container text-center my-5 pt-5 pb-4">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ recipe.name }}</h1>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb justify-content-center text-uppercase">
-                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'recipes' %}">Recipes</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">{{ recipe.name }}</li>
-            </ol>
-        </nav>
-    </div>
+  <div class="container text-center my-5 pt-5 pb-4">
+    <h1 class="display-3 text-white mb-3">{{ recipe.name }}</h1>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb justify-content-center text-uppercase">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'recipes' %}">Recipes</a></li>
+        <li class="breadcrumb-item text-white active" aria-current="page">{{ recipe.name }}</li>
+      </ol>
+    </nav>
+  </div>
 </div>
 
-<!-- Recipe Detail Content -->
-<div class="card" data-aos="fade-up">
-    <div class="container my-5">
-        <div class="card shadow-lg">
-            <div class="card-body">
-                <h2 class="card-title">{{ recipe.name }}</h2>
-                <p><strong>Meal Type:</strong> {{ recipe.meal_type|title }}</p>
-                <p><strong>Description:</strong> {{ recipe.description }}</p>
-                <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
-                <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
-                <p><strong>Allergies:</strong>
-                    <ul>
-                        {% for allergy in recipe.allergies.all %}
-                            <li>{{ allergy.name }}</li>
-                        {% empty %}
-                            <li>None</li>
-                        {% endfor %}
-                    </ul>
-                </p>
-                <p><strong>Management of Allergies:</strong> {{ recipe.management_of_allergies|default:"None" }}</p>
-            </div>
-        </div>
+<!-- Details Section -->
+<div class="container my-5">
+  <div class="card bg-white p-4 shadow mx-auto" style="max-width: 700px;">
+    <p><strong>Meal Type:</strong> {{ recipe.meal_type|title }}</p>
+    <p><strong>Description:</strong> {{ recipe.description }}</p>
+    <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+    <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
 
-        <!-- Action Buttons (only for logged-in users) -->
-        {% if user.is_authenticated %}
-       <!-- Glassmorphism Buttons -->
-<div class="mt-4 d-flex flex-wrap gap-3">
-    <a href=""></a>
-    <a href="{% url 'recipe_update' recipe.id %}" class="glass-btn warning">
-        ✏️ Edit Recipe
-    </a>
-    <a href="{% url 'recipe_delete' recipe.id %}" class="glass-btn danger">
-        🗑️ Delete Recipe
-    </a>
-</div>
+    <p><strong>Allergies:</strong></p>
+    <ul>
+      {% for allergy in recipe.allergies.all %}
+        <li>{{ allergy.name }}</li>
+      {% empty %}
+        <li>None</li>
+      {% endfor %}
+    </ul>
 
-{% endif %}
+    {% if recipe.management_of_allergies %}
+      <p><strong>Allergy Management:</strong> {{ recipe.management_of_allergies }}</p>
+    {% endif %}
 
-
-        <!-- Back Button -->
-        <div class="text-start mt-4">
-            <a href="{% url 'recipes' %}" class="btn custom-back-btn">
-                ← Back to Recipes
-            </a>
-        </div>
+    <!-- Action Buttons -->
+    <div class="d-flex gap-2 flex-wrap mt-4">
+      <a href="{% url 'recipes' %}" class="btn btn-outline-secondary">← Back to Recipes</a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'recipe_update' recipe.id %}" class="btn btn-warning">✏️ Edit</a>
+        <a href="{% url 'recipe_delete' recipe.id %}" class="btn btn-danger">🗑 Delete</a>
+      {% endif %}
     </div>
+  </div>
 </div>
 
 {% endblock %}

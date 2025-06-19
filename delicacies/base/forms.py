@@ -17,4 +17,18 @@ class RecipeForm(ModelForm):
             self.fields['meal_type'].widget.attrs.update({'placeholder': 'Select meal type'})
             
 
+# base/forms.py
+from django import forms
+from .models import Testimonial
+
+class TestimonialForm(forms.ModelForm):
+    class Meta:
+        model = Testimonial
+        fields = '__all__'
+        
+        def __init__(self, *args, **kwargs):
+            super(TestimonialForm, self).__init__(*args, **kwargs)
+            self.fields['name'].widget.attrs.update({'placeholder': 'Enter your name'})
+            self.fields['content'].widget.attrs.update({'placeholder': 'Share your testimonial'})
+            self.fields['location'].widget.attrs.update({'placeholder': 'Enter your location (optional)'})
             
