@@ -17,31 +17,49 @@
 
 <!-- Recipe Detail Content -->
 <div class="card" data-aos="fade-up">
-<div class="container my-5">
-    <div class="card shadow-lg">
-        <div class="card-body">
-            <h2 class="card-title">{{ recipe.name }}</h2>
-            <p><strong>Meal Type:</strong> {{ recipe.meal_type|title }}</p>
-            <p><strong>Description:</strong> {{ recipe.description }}</p>
-            <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
-            <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
-            <p><strong>Allergies:</strong>
-                <ul>
-                    {% for allergy in recipe.allergies.all %}
-                        <li>{{ allergy.name }}</li>
-                    {% empty %}
-                        <li>None</li>
-                    {% endfor %}
-                </ul>
-            </p>
-            <p><strong>Management of Allergies:</strong> {{ recipe.management_of_allergies|default:"None" }}</p>
+    <div class="container my-5">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <h2 class="card-title">{{ recipe.name }}</h2>
+                <p><strong>Meal Type:</strong> {{ recipe.meal_type|title }}</p>
+                <p><strong>Description:</strong> {{ recipe.description }}</p>
+                <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+                <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+                <p><strong>Allergies:</strong>
+                    <ul>
+                        {% for allergy in recipe.allergies.all %}
+                            <li>{{ allergy.name }}</li>
+                        {% empty %}
+                            <li>None</li>
+                        {% endfor %}
+                    </ul>
+                </p>
+                <p><strong>Management of Allergies:</strong> {{ recipe.management_of_allergies|default:"None" }}</p>
+            </div>
+        </div>
+
+        <!-- Action Buttons (only for logged-in users) -->
+        {% if user.is_authenticated %}
+       <!-- Glassmorphism Buttons -->
+<div class="mt-4 d-flex flex-wrap gap-3">
+    <a href="{% url 'recipe_update' recipe.id %}" class="glass-btn warning">
+        ✏️ Edit Recipe
+    </a>
+    <a href="{% url 'recipe_delete' recipe.id %}" class="glass-btn danger">
+        🗑️ Delete Recipe
+    </a>
+</div>
+
+{% endif %}
+
+
+        <!-- Back Button -->
+        <div class="text-start mt-4">
+            <a href="{% url 'recipes' %}" class="btn custom-back-btn">
+                ← Back to Recipes
+            </a>
         </div>
     </div>
 </div>
 
-
-<a href="{% url 'recipes' %}" class="btn btn-secondary mb-4">
-  ← Back to Recipes
-</a>
-</div>
 {% endblock %}

@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-lg glass-navbar sticky-top">
+<nav id="mainNavbar" class="navbar navbar-expand-lg {% if request.path == '/' %}glass-navbar{% else %}navbar-dark bg-dark{% endif %} sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'home' %}">
-  <span class="meal-logo-text">MealMate</span>
-</a>
-
+    <a class="navbar-brand d-flex align-items-center gap-2" href="{% url 'home' %}">
+      <i class="fas fa-pepper-hot text-warning" style="font-size: 1.6rem;"></i>
+      <span class="meal-logo-text text-white">MealMate</span>
+    </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,27 +13,22 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active text-primary{% endif %}" href="{% url 'home' %}">Home</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active text-warning{% endif %}" href="{% url 'home' %}">Home</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active text-primary{% endif %}" href="{% url 'about' %}">About</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active text-warning{% endif %}" href="{% url 'about' %}">About</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'recipes' %}active text-primary{% endif %}" href="{% url 'recipes' %}">Recipes</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'recipes' %}active text-warning{% endif %}" href="{% url 'recipes' %}">Recipes</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'nutrientcorner' %}active text-primary{% endif %}" href="{% url 'nutrientcorner' %}">Nutrients-Corner</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'nutrientcorner' %}active text-warning{% endif %}" href="{% url 'nutrientcorner' %}">Nutrients-Corner</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'shop' %}active text-primary{% endif %}" href="{% url 'shop' %}">Utensil-Hub</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'shop' %}active text-warning{% endif %}" href="{% url 'shop' %}">Utensil-Hub</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active text-primary{% endif %}" href="{% url 'contact' %}">Contact</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active text-warning{% endif %}" href="{% url 'contact' %}">Contact</a>
         </li>
       </ul>
     </div>

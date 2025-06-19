@@ -49,6 +49,7 @@ h1{
 
 .hero-header {
   background: url('../images/hero.jpg') center center / cover no-repeat;
+  padding-top: 80px;
 }
 .nutrient-card-hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -142,4 +143,88 @@ h1{
   font-size: 1.8rem;
   color: #ffc107;
   letter-spacing: 1px;
+}
+
+.custom-back-btn {
+  background-color: rgba(15, 23, 43, 0.9);
+  color: #fff;
+  padding: 6px 16px;
+  font-size: 14px;
+  border-radius: 6px; /* soft square-pill */
+  width: auto; /* ensures it doesn't stretch */
+  display: inline-block;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.custom-back-btn:hover {
+  background-color: rgba(15, 23, 43, 1);
+  transform: translateX(-3px);
+  color: #fff;
+  text-decoration: none;
+}
+
+
+/* Base glass style */
+.glass-navbar {
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Darker on scroll */
+.glass-navbar.scrolled {
+  background-color: rgba(0, 0, 0, 0.6); /* bluish/dark tint */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+
+.glass-btn {
+    padding: 0.6rem 1.4rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.glass-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+}
+
+.glass-btn.warning {
+    border-color: #ffc107;
+    color: #ffc107;
+}
+
+.glass-btn.warning:hover {
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+}
+
+.glass-btn.danger {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.glass-btn.danger:hover {
+    background: rgba(220, 53, 69, 0.15);
+    color: #dc3545;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }

@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import NutrientCorner, Recipe, Allergy, Shop  # Note: Shop is capitalized now
-# Ensure you have the correct import for RecipeForm  
+from .forms import RecipeForm  # Import RecipeForm from your forms module
 
 
 def home(request):
@@ -25,7 +25,40 @@ def recipes(request):
 def recipe(request, pk):
     recipe = Recipe.objects.get(id=pk)
     context = {'recipe': recipe}
-    return render(request, 'base/recipe.html',context)  
+    return render(request, 'base/recipe.html',context) 
+
+def create_recipe(request):
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('recipes')
+    else:
+        form = RecipeForm()
+    context = {'form': form}
+    return render(request, 'base/recipe_form.html', context) 
+
+def update_recipe(request, pk):
+    recipe = Recipe.objects.get(id=pk)
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES, instance=recipe)
+        if form.is_valid():
+            form.save()
+            return redirect('recipe', pk=recipe.id)
+    else:
+        form = RecipeForm(instance=recipe)
+    context = {'form': form}
+    return render(request, 'base/recipe_form.html', context)
+
+def delete_recipe(request, pk):
+    recipe = Recipe.objects.get(id=pk)
+    if request.method == 'POST':
+        recipe.delete()
+        return redirect('recipes')
+    context = {'recipe': recipe}
+    return render(request, 'base/recipe_delete.html', context)
+
+
 
 
 
