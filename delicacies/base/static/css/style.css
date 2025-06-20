@@ -372,14 +372,14 @@ body.dark-mode .hero-header {
 
 /* Fix breadcrumb visibility on dark background */
 .breadcrumb-item a {
-  color: #ffc107 !important; /* Bright yellow link for contrast */
+  color: #007bff !important; /* Bright yellow link for contrast */
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 800;
 }
 
 .breadcrumb-item a:hover {
   text-decoration: underline;
-  color: #ffda6a !important; /* lighter on hover */
+  color: #007bff !important; /* lighter on hover */
 }
 
 
@@ -474,4 +474,9 @@ body {
 
 .carousel-item {
   transition: transform 0.6s ease-in-out;
+}
+.nutrient-card-hover:hover {
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 128, 0, 0.2);
 }

@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<!-- Hero Header -->
+<div class="container-xxl py-5 bg-dark hero-header mb-5">
+  <div class="container text-center my-5 pt-5 pb-4">
+    <h1 class="display-4 text-white mb-3">
+      {% if form.instance.pk %} ✏️ Edit Nutrient {% else %} ➕ Add Nutrient {% endif %}
+    </h1>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb justify-content-center text-uppercase">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'nutrientscorner' %}">Nutrients Corner</a></li>
+        <li class="breadcrumb-item text-white active" aria-current="page">
+          {% if form.instance.pk %}Edit{% else %}Create{% endif %}
+        </li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<!-- Form Section -->
+<div class="container my-5" data-aos="fade-up">
+  <div class="card bg-white p-4 shadow mx-auto" style="max-width: 700px;">
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="mb-3">
+          <label class="form-label fw-semibold">{{ field.label }}</label>
+          {{ field|add_class:"form-control" }}
+          {% if field.help_text %}
+            <small class="form-text text-muted">{{ field.help_text }}</small>
+          {% endif %}
+          {% for error in field.errors %}
+            <div class="text-danger small">{{ error }}</div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+
+      <div class="d-flex gap-3 mt-4 flex-wrap">
+        <button type="submit" class="btn btn-success">💾 Save</button>
+        <a href="{% url 'nutrientscorner' %}" class="btn btn-outline-secondary">← Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

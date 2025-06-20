@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<!-- Hero -->
+<!-- Hero Section -->
 <div class="container-xxl py-5 bg-dark hero-header mb-5">
   <div class="container text-center my-5 pt-5 pb-4">
     <h1 class="display-3 text-white mb-3">{{ recipe.name }}</h1>
@@ -15,28 +15,41 @@
   </div>
 </div>
 
-<!-- Details Section -->
+<!-- Recipe Detail Card -->
 <div class="container my-5">
-  <div class="card bg-white p-4 shadow mx-auto" style="max-width: 700px;">
-    <p><strong>Meal Type:</strong> {{ recipe.meal_type|title }}</p>
+  <div class="card bg-white shadow p-4 mx-auto" style="max-width: 750px;">
+    <div class="mb-3">
+      <span class="badge bg-primary text-light">{{ recipe.meal_type|title }}</span>
+    </div>
+
     <p><strong>Description:</strong> {{ recipe.description }}</p>
-    <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
-    <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+    <hr>
+    <p><strong>Ingredients:</strong></p>
+    <p>{{ recipe.ingredients }}</p>
+    <hr>
+    <p><strong>Instructions:</strong></p>
+    <p>{{ recipe.instructions }}</p>
+    <hr>
 
     <p><strong>Allergies:</strong></p>
-    <ul>
-      {% for allergy in recipe.allergies.all %}
-        <li>{{ allergy.name }}</li>
-      {% empty %}
-        <li>None</li>
-      {% endfor %}
-    </ul>
-
-    {% if recipe.management_of_allergies %}
-      <p><strong>Allergy Management:</strong> {{ recipe.management_of_allergies }}</p>
+    {% if recipe.allergies.all %}
+      <div class="alert alert-warning p-2">
+        <ul class="mb-0">
+          {% for allergy in recipe.allergies.all %}
+            <li>{{ allergy.name }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% else %}
+      <p class="text-muted">None</p>
     {% endif %}
 
-    <!-- Action Buttons -->
+    {% if recipe.management_of_allergies %}
+      <p><strong>Allergy Management:</strong></p>
+      <p class="text-success">{{ recipe.management_of_allergies }}</p>
+    {% endif %}
+
+    <!-- Buttons -->
     <div class="d-flex gap-2 flex-wrap mt-4">
       <a href="{% url 'recipes' %}" class="btn btn-outline-secondary">← Back to Recipes</a>
       {% if user.is_authenticated %}

@@ -1,34 +1,47 @@
 {% extends 'main.html' %}
 {% block content %}
 
+<!-- Hero Header -->
 <div class="container-xxl py-5 bg-dark hero-header mb-5">
-    <div class="container text-center my-5 pt-5 pb-4">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">Nutrients-Corner</h1>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb justify-content-center text-uppercase">
-                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">Nutrients-Corner</li>
-            </ol>
-        </nav>
-    </div>
+  <div class="container text-center my-5 pt-5 pb-4">
+    <h1 class="display-3 text-white mb-3 animated slideInDown">Nutrients-Corner</h1>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb justify-content-center text-uppercase">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item text-white active" aria-current="page">Nutrients-Corner</li>
+      </ol>
+    </nav>
+  </div>
 </div>
 
-
-<div class="card" data-aos="fade-up">
-
+<!-- Nutrients Section -->
 <div class="container py-5">
-  <h2 class="text-center mb-4">🌿 Nutrients Corner</h2>
+  <h2 class="text-center mb-3 text-success" data-aos="fade-up">🌿 Explore Essential Nutrients</h2>
+
+  <div class="text-center mb-4" data-aos="fade-up" data-aos-delay="100">
+    <a href="{% url 'create_nutrient' %}" class="btn btn-success px-4 py-2">
+      ➕ Add Nutrient
+    </a>
+  </div>
 
   {% if nutrientscorner %}
     <div class="row">
       {% for nutrient in nutrientscorner %}
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card h-100 nutrient-card-hover">
-            <div class="card-body">
-              <h5 class="card-title text-primary">{{ nutrient.name }}</h5>
-              <p class="card-text"><strong>What It Does:</strong> {{ nutrient.health_benefit }}</p>
-              <p class="card-text"><strong>Sources:</strong><br>{{ nutrient.sources|linebreaks }}</p>
-              <p class="card-text"><strong>Daily Requirement:</strong> {{ nutrient.daily_requirement }}</p>
+
+        <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+          <div class="card h-100 shadow nutrient-card-hover">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <h5 class="card-title text-primary">{{ nutrient.name }}</h5>
+                <p class="card-text"><strong>What It Does:</strong> {{ nutrient.health_benefits|truncatewords:20 }}</p>
+                <p class="card-text"><strong>Sources:</strong><br>{{ nutrient.sources|linebreaks }}</p>
+                <p class="card-text"><strong>Daily Requirement:</strong> {{ nutrient.daily_requirement }}</p>
+              </div>
+              {% if nutrient.id %}
+                <a href="{% url 'nutrientcorner' pk=nutrient.id %}" class="btn btn-outline-success mt-3">Learn More →</a>
+              {% else %}
+                <span class="text-muted mt-3">Details unavailable</span>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -38,9 +51,5 @@
     <p class="text-center text-muted">No featured nutrient available.</p>
   {% endif %}
 </div>
-</div>
-
-
-
 
 {% endblock %}

@@ -14,11 +14,12 @@
   </div>
 </div>
 
-<!-- Recipe List -->
+<!-- Recipe Section -->
 <div class="container my-5">
   <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
     <h2 class="text-dark">All Recipes</h2>
 
+    <!-- Filter Form -->
     <form method="get" class="d-inline-block">
       <select name="meal" class="form-select form-select-sm" onchange="this.form.submit()">
         <option value="">Filter by Meal</option>
@@ -37,7 +38,7 @@
   <div class="row">
     {% for recipe in recipes %}
       <div class="col-md-4 mb-4">
-        <div class="card shadow-sm h-100">
+        <div class="card shadow-sm h-100 border-0">
           <div class="card-body">
             <h5 class="card-title">
               {% if recipe.meal_type == 'breakfast' %} 🍳
@@ -53,8 +54,8 @@
             <p class="card-text text-muted small">{{ recipe.meal_type|title }}</p>
             <div class="d-flex gap-2 mt-3 flex-wrap">
               <a href="{% url 'recipe' recipe.id %}" class="btn btn-outline-primary btn-sm">👁 View</a>
-              <a href="{% url 'recipe_update' recipe.id %}" class="btn btn-outline-warning btn-sm">✏️ Edit</a>
-              <a href="{% url 'recipe_delete' recipe.id %}" class="btn btn-outline-danger btn-sm">🗑 Delete</a>
+
+
             </div>
           </div>
         </div>
@@ -66,8 +67,5 @@
     {% endfor %}
   </div>
 </div>
-
-
-
 
 {% endblock %}

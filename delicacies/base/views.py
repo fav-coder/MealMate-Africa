@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
-from .models import NutrientCorner, Recipe, Allergy, Shop  # Note: Shop is capitalized now
-from .forms import RecipeForm  # Import RecipeForm from your forms module
+from .models import NutrientCorner, Recipe, Allergy, Shop, Testimonial  # Note: Shop is capitalized now
+from .forms import RecipeForm, TestimonialForm, NutrientForm  # Import RecipeForm from your forms module
 from django.contrib import messages
-from .forms import TestimonialForm
 
-from .models import Recipe
 
-from .models import Testimonial
+
+ 
 
 def home(request):
     recipe_count = Recipe.objects.count()
@@ -78,10 +77,53 @@ def delete_recipe(request, pk):
 
 
 
-def nutrientcorner(request):  # Renamed for PEP8 consistency
+def nutrientscorner(request):  # Renamed for PEP8 consistency
     nutrientscorner = NutrientCorner.objects.all()
     context = {'nutrientscorner': nutrientscorner}
     return render(request, 'base/nutrientscorner.html', context)
+
+def nutrientcorner(request, pk):
+    nutrientcorner = NutrientCorner.objects.get(id=pk)
+    context = {'nutrientcorner': nutrientcorner}
+    return render(request, 'base/nutrientcorner.html',context) 
+
+def create_nutrient(request):
+    if request.method == 'POST':
+        form = NutrientForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "🎉 Nutrient created successfully!")
+            return redirect('nutrientscorner')
+        else:
+            messages.error(request, "⚠️ Please correct the errors below.")
+    else:
+        form = NutrientForm()
+    return render(request, 'base/nutrient_form.html', {'form': form})
+
+
+def update_nutrient(request, pk):
+    nutrient = NutrientCorner.objects.get(id=pk)
+    if request.method == 'POST':
+        form = NutrientForm(request.POST, request.FILES, instance=nutrient)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "✏️ Nutrient updated successfully!")
+            return redirect('nutrientcorner')
+    else:
+        form = NutrientForm(instance=nutrient)
+    context = {'form': form}
+    return render(request, 'base/nutrient_form.html', context)
+
+def delete_nutrient(request, pk):
+    nutrient = NutrientCorner.objects.get(id=pk)
+    if request.method == 'POST':
+        nutrient.delete()
+        messages.success(request, f"🗑️ '{nutrient.name}' was deleted.")
+        return redirect('nutrientscorner')  # ✅ Redirect to list, not detail
+    context = {'nutrient': nutrient}
+    return render(request, 'base/nutrient_delete.html', context)
+
+
 
 def shop(request):  # Renamed to avoid conflict with model
     shops = Shop.objects.all()  # Ensure you have imported Shop correctly
@@ -91,18 +133,14 @@ def shop(request):  # Renamed to avoid conflict with model
 # base/views.py
 
 
+
 def submit_testimonial(request):
     if request.method == 'POST':
         form = TestimonialForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Thank you for your feedback!")
-            return redirect('home')
+            messages.success(request, 'Thank you for your feedback! ❤️')
+            return redirect('home')  # 👈 redirect to homepage
     else:
         form = TestimonialForm()
-    
     return render(request, 'base/submit_testimonial.html', {'form': form})
-
-
-
-

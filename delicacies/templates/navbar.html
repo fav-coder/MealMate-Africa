@@ -28,9 +28,10 @@
             href="{% url 'recipes' %}">Recipes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'nutrientcorner' %}active text-warning{% endif %}"
-            href="{% url 'nutrientcorner' %}">Nutrients-Corner</a>
+  <a class="nav-link {% if request.resolver_match.url_name == 'nutrientscorner' %}active text-warning{% endif %}"
+     href="{% url 'nutrientscorner' %}">Nutrients-Corner</a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link {% if request.resolver_match.url_name == 'shop' %}active text-warning{% endif %}"
             href="{% url 'shop' %}">Utensil-Hub</a>

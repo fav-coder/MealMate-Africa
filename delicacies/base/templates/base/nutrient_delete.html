@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<!-- Hero Header -->
+<div class="container-xxl py-5 bg-danger hero-header mb-5">
+  <div class="container text-center my-5 pt-5 pb-4">
+    <h1 class="display-4 text-white mb-3">⚠️ Confirm Delete</h1>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb justify-content-center text-uppercase">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'nutrientscorner' %}">Nutrients</a></li>
+        <li class="breadcrumb-item text-white active" aria-current="page">Delete</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<!-- Delete Confirmation Section -->
+<div class="container my-5" data-aos="fade-up">
+  <div class="card bg-white p-4 shadow mx-auto" style="max-width: 700px;">
+    <h4 class="mb-4 text-danger">
+      Are you sure you want to delete <strong>{{ nutrient.name }}</strong>?
+    </h4>
+
+    <form method="POST">
+      {% csrf_token %}
+      <div class="d-flex gap-3 flex-wrap">
+        <button type="submit" class="btn btn-danger">🗑️ Yes, Delete</button>
+        <a href="{% url 'nutrientscorner' %}" class="btn btn-outline-secondary">← No, Go Back</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
