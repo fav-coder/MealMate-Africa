@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import NutrientCorner, Recipe, Allergy, Shop, Testimonial  # Note: Shop is capitalized now
 from .forms import RecipeForm, TestimonialForm, NutrientForm  # Import RecipeForm from your forms module
 from django.contrib import messages
+from django.conf import settings
+from django.core.mail import send_mail
 
 
 
@@ -21,6 +23,25 @@ def about(request):
     return render(request, 'base/about.html')
 
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        full_message = f"Message from {name} <{email}>:\n\n{message}"
+
+        send_mail(
+            subject,
+            full_message,
+            settings.DEFAULT_FROM_EMAIL,
+            ['favoursangala046@gmail.com'],  # 👈 Replace with *your* email
+            fail_silently=False,
+        )
+
+        messages.success(request, "📩 Your message has been sent successfully!")
+        return redirect('contact')
+
     return render(request, 'base/contact.html')
 
 def recipes(request):
@@ -108,7 +129,7 @@ def update_nutrient(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, "✏️ Nutrient updated successfully!")
-            return redirect('nutrientcorner')
+            return redirect('nutrientscorner')  # redirect to list page
     else:
         form = NutrientForm(instance=nutrient)
     context = {'form': form}
