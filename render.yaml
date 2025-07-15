@@ -1,0 +1,11 @@
+﻿services:
+  - type: web
+    name: mealmate
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn delicacies.wsgi
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: delicacies.settings
+      - key: PYTHON_VERSION
+        value: 3.12.1
