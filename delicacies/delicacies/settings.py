@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-i4z$!mvim0qz09mrva5cbl)!f%!zz%0zlz+ws1u0e(5*$5pyki
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ALLOWED_HOSTS = ['mealmate-africa-1.onrender.com', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
@@ -120,7 +121,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, etc.)
 STATIC_URL = '/static/' 
-STATICFILES_DIRS = [BASE_DIR / "base/static"]
+STATICFILES_DIRS = [BASE_DIR / "delicacies/base/static"]
 
 
 # Media files (user-uploaded content)
