@@ -6,9 +6,12 @@ from .views import submit_testimonial
 
 urlpatterns = [
     # Static Pages
+
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
+    path('login/', views.loginUser, name='login'),
+
 
     # Recipe CRUD
     path('recipes/', views.recipes, name='recipes'),

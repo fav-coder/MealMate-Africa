@@ -1,14 +1,37 @@
 from django.shortcuts import render, redirect
-from .models import NutrientCorner, Recipe, Allergy, Shop, Testimonial  # Note: Shop is capitalized now
-from .forms import RecipeForm, TestimonialForm, NutrientForm  # Import RecipeForm from your forms module
+from .models import NutrientCorner, Recipe, Allergy, Shop, Testimonial  # Added Author model
+from .forms import RecipeForm, TestimonialForm, NutrientForm  # Import RecipeForm and AuthorForm from your forms module
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm  # Import UserCreationForm
 
 
+def loginUser(request):  
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        # checked wheyther the user exists in the DB => Users table
+        try:
+            user = User.objects.get(username = username)
+        except:
+            messages.error(request, "User does not exist!")
+        # authenticated the user and checked whether the credentials are ok
+        user = authenticate(request, username=username, password=password) 
+        if user is not None: 
+            login(request, user)
+            messages.error(request, f"Welcome home {user.username}!")
+            return redirect('home')
+        else:
+            messages.error(request, "Wrong Credentials")
+        
+    return render(request, "base/login.html")
 
  
-
+@login_required(login_url="login")
 def home(request):
     recipe_count = Recipe.objects.count()
     testimonials = Testimonial.objects.order_by('-created_at')[:5]
@@ -135,6 +158,7 @@ def update_nutrient(request, pk):
     context = {'form': form}
     return render(request, 'base/nutrient_form.html', context)
 
+@login_required(login_url="login")
 def delete_nutrient(request, pk):
     nutrient = NutrientCorner.objects.get(id=pk)
     if request.method == 'POST':
