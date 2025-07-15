@@ -3,8 +3,8 @@ services:
     name: mealmate
     env: python
     rootDir: delicacies
-    buildCommand: "pip install -r ../requirements.txt"
-    startCommand: "gunicorn delicacies.delicacies.wsgi"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn delicacies.wsgi:application"
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: delicacies.delicacies.settings
