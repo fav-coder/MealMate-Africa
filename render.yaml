@@ -1,9 +1,10 @@
-﻿services:
+services:
   - type: web
     name: mealmate
     env: python
-    buildCommand: ""
-    startCommand: gunicorn delicacies.wsgi
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn delicacies.delicacies.wsgi"
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: delicacies.settings

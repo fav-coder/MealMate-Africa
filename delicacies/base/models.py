@@ -52,3 +52,13 @@ class Shop(models.Model):
 
     def __str__(self):
         return self.name
+
+class Testimonial(models.Model):
+    name = models.CharField(max_length=100)
+    content = models.TextField()
+    location = models.CharField(max_length=100, blank=True, null=True)
+    date = models.DateField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return {self.name}     

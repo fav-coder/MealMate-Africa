@@ -1,91 +1,71 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<style>
-  .recipe-name-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    border-radius: 12px;
-    background-color: #f8f9fa;
-  }
-  .recipe-name-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
-  }
-  .meal-filter {
-    max-width: 300px;
-    margin-bottom: 1rem;
-  }
-</style>
-
+<!-- Hero Section -->
 <div class="container-xxl py-5 bg-dark hero-header mb-5">
   <div class="container text-center my-5 pt-5 pb-4">
-    <h1 class="display-3 text-white mb-3 animated slideInDown">Recipes</h1>
+    <h1 class="display-3 text-white mb-3">Recipes</h1>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb justify-content-center text-uppercase">
         <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Pages</a></li>
         <li class="breadcrumb-item text-white active" aria-current="page">Recipes</li>
       </ol>
     </nav>
   </div>
 </div>
 
-
-<div class="card" data-aos="fade-up">
+<!-- Recipe Section -->
 <div class="container my-5">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>All Recipes</h2>
-    <!-- Filter by meal type -->
-    <form method="get" class="meal-filter">
-      <select name="meal" class="form-control" onchange="this.form.submit()">
-        <option value="">Sort by Meal Type</option>
+  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <h2 class="text-dark">All Recipes</h2>
+
+    <!-- Filter Form -->
+    <form method="get" class="d-inline-block">
+      <select name="meal" class="form-select form-select-sm" onchange="this.form.submit()">
+        <option value="">Filter by Meal</option>
         <option value="breakfast">🍳 Breakfast</option>
         <option value="lunch">🥗 Lunch</option>
         <option value="dinner">🍽️ Dinner</option>
         <option value="snack">🧁 Snack</option>
         <option value="dessert">🍰 Dessert</option>
-        <option value="appetizer">🍢 Appetizer</option>
-        <option value="salad">🥗️ Salad</option> 
         <option value="drink">🍹 Drink</option>
-
-      
       </select>
     </form>
+
+    <a href="{% url 'recipe_create' %}" class="btn btn-success btn-sm">➕ Add Recipe</a>
   </div>
 
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  <div class="row">
     {% for recipe in recipes %}
-      <div class="col">
-        <a href="{% url 'recipe' recipe.pk %}" class="text-decoration-none text-dark">
-          <div class="card h-100 shadow-sm recipe-name-card text-center p-4">
-            <div class="card-body d-flex align-items-center justify-content-center">
-              <h5 class="card-title mb-0">
-                {% if recipe.meal_type == 'breakfast' %} 🍳
-                {% elif recipe.meal_type == 'lunch' %} 🥗
-                {% elif recipe.meal_type == 'dinner' %} 🍽️
-                {% elif recipe.meal_type == 'snack' %} 🧁
-                {% elif recipe.meal_type == 'dessert' %} 🍰
-                {% elif recipe.meal_type == 'appetizer' %} 🍢
-                {% elif recipe.meal_type == 'salad' %} 🥗️
-                {% elif recipe.meal_type == 'drink' %} 🍹
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100 border-0">
+          <div class="card-body">
+            <h5 class="card-title">
+              {% if recipe.meal_type == 'breakfast' %} 🍳
+              {% elif recipe.meal_type == 'lunch' %} 🥗
+              {% elif recipe.meal_type == 'dinner' %} 🍽️
+              {% elif recipe.meal_type == 'snack' %} 🧁
+              {% elif recipe.meal_type == 'dessert' %} 🍰
+              {% elif recipe.meal_type == 'drink' %} 🍹
+              {% else %} 🍴
+              {% endif %}
+              {{ recipe.name }}
+            </h5>
+            <p class="card-text text-muted small">{{ recipe.meal_type|title }}</p>
+            <div class="d-flex gap-2 mt-3 flex-wrap">
+              <a href="{% url 'recipe' recipe.id %}" class="btn btn-outline-primary btn-sm">👁 View</a>
 
-                {% else %} 🍴
-                {% endif %}
-                {{ recipe.name }}
-              </h5>
+
             </div>
           </div>
-        </a>
+        </div>
       </div>
     {% empty %}
-      <div class="col-12">
-        <p class="text-center">No recipes found.</p>
+      <div class="col-12 text-center">
+        <p class="text-muted">No recipes found.</p>
       </div>
     {% endfor %}
   </div>
 </div>
-</div>
+
 {% endblock %}
-
-

@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<!-- Hero Section -->
+<div class="container-xxl py-5 bg-success hero-header mb-5">
+  <div class="container text-center my-5 pt-5 pb-4">
+    <h1 class="display-3 text-white mb-3 animated slideInDown">{{ nutrientcorner.name }}</h1>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb justify-content-center text-uppercase">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'nutrientscorner' %}">Nutrients Corner</a></li>
+        <li class="breadcrumb-item text-white active" aria-current="page">{{ nutrientcorner.name }}</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<!-- Nutrient Details Section -->
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-lg p-4" data-aos="fade-up">
+        <h2 class="text-primary mb-3">{{ nutrientcorner.name }}</h2>
+
+        <p><strong>💪 Health Benefits:</strong><br>{{ nutrientcorner.health_benefits|linebreaks }}</p>
+        <p><strong>🥬 Sources:</strong><br>{{ nutrientcorner.sources|linebreaks }}</p>
+        <p><strong>📌 Daily Requirement:</strong><br>{{ nutrientcorner.daily_requirement }}</p>
+
+        <div class="mt-4 d-flex gap-2 flex-wrap">
+          <a href="{% url 'nutrientscorner' %}" class="btn btn-outline-secondary">← Back to Nutrients</a>
+          <a href="{% url 'nutrient_update' nutrientcorner.id %}" class="btn btn-outline-primary">📝 Edit</a>
+          <a href="{% url 'nutrient_delete' nutrientcorner.id %}" class="btn btn-outline-danger">🗑️ Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

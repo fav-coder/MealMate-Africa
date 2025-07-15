@@ -1,1 +1,1 @@
-web: gunicorn delicacies.wsgi
+web: gunicorn delicacies.delicacies.wsgi
