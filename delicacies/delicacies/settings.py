@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'delicacies.base.apps.BaseConfig',
+    'base.apps.BaseConfig',
     'widget_tweaks',
 
 ]
@@ -52,7 +52,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add WhiteNoise middleware
 ]
+
 
 ROOT_URLCONF = 'delicacies.delicacies.urls'
 
@@ -121,9 +123,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, etc.)
 STATIC_URL = '/static/' 
-STATICFILES_DIRS = [BASE_DIR / "delicacies/base/static"]
+STATICFILES_DIRS = [BASE_DIR / "base/static"]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # important for Render
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Whitenoise settings for serving static files in production
 
 # Media files (user-uploaded content)
 
